@@ -92,7 +92,6 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
-      /* Mobile safe area spacing so bottom dock never overlaps content */
       padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
     }
 
@@ -104,7 +103,7 @@
       padding-inline: clamp(0.75rem, 3vw, 1.75rem);
     }
 
-    /* Fluid Typography clamp optimized for Mobile to Desktop */
+    /* Fluid Typography clamp */
     .hero-title {
       font-family: 'Outfit', sans-serif;
       font-size: clamp(1.85rem, 6vw + 0.2rem, 3.8rem);
@@ -116,7 +115,7 @@
       line-height: 1.22;
     }
 
-    /* Spring Physics Tactile Buttons (Minimum 44px height for mobile thumbs) */
+    /* Spring Physics Tactile Buttons */
     .btn-tactile {
       min-height: 44px;
       display: inline-flex;
@@ -148,12 +147,12 @@
       }
     }
 
-    /* Mobile Inputs: Prevent auto-zoom on iPhone Safari by keeping font-size >= 16px */
+    /* Mobile Inputs: Prevent auto-zoom on iPhone Safari */
     input[type="text"], input[type="tel"] {
       font-size: 16px !important;
     }
 
-    /* Custom Slider with Large Touch-Friendly Thumb (32px) */
+    /* Custom Slider */
     input[type=range] {
       -webkit-appearance: none;
       width: 100%;
@@ -241,7 +240,7 @@
         </div>
       </a>
 
-      <!-- Header Quick Actions (Optimized for Mobile) -->
+      <!-- Header Quick Actions -->
       <div class="flex items-center gap-1.5 sm:gap-2.5">
         
         <!-- Sound Toggle Button -->
@@ -260,7 +259,7 @@
           <span class="hidden sm:inline">+91 98765 43210</span>
         </a>
 
-        <!-- Direct WhatsApp Chat (Header) -->
+        <!-- Direct WhatsApp Chat -->
         <a href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20LIC%20पॉलिसी%20की%20फ्री%20सलाह%20चाहिए।" target="_blank" onclick="soundEngine.playChime()" class="btn-tactile px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs flex items-center gap-1.5 shadow-sm">
           <i data-lucide="message-circle" class="w-3.5 h-3.5 fill-white"></i>
           <span>चैट</span>
@@ -270,60 +269,26 @@
     </div>
   </header>
 
-  <!-- 3. HERO SECTION (100% RESPONSIVE ON ALL DEVICES) -->
-  <section class="relative bg-gradient-to-b from-lic-blue via-lic-blueDark to-lic-blue text-white pt-6 pb-12 sm:pt-14 sm:pb-20 overflow-hidden">
+  <!-- 3. HERO SECTION (AGENT PHOTO FIRST ON MOBILE & PROMINENT EVERYWHERE) -->
+  <section class="relative bg-gradient-to-b from-lic-blue via-lic-blueDark to-lic-blue text-white pt-5 pb-12 sm:pt-14 sm:pb-20 overflow-hidden">
     
     <div class="fluid-container relative z-10">
       
       <!-- Top Trust Badges -->
-      <div class="flex items-center justify-center lg:justify-start gap-1.5 sm:gap-2 flex-wrap mb-3.5">
+      <div class="flex items-center justify-center lg:justify-start gap-1.5 sm:gap-2 flex-wrap mb-4">
         <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-lic-yellow text-lic-blueDark text-[10px] sm:text-xs font-black uppercase tracking-wider shadow">
           ⭐ MDRT (USA) Life Member 2025
         </span>
         <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/20 text-white text-[10px] sm:text-xs font-bold border border-white/30 backdrop-blur-sm">
-          🏛️ एजेंसी कोड: 0487921X
+          🏛️ अधिकृत एजेंसी कोड: 0487921X
         </span>
       </div>
 
+      <!-- Grid: Agent Photo First (order-1), Text Second (order-2) on Mobile -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
         
-        <!-- Left Hero Text -->
-        <div class="lg:col-span-7 text-center lg:text-left">
-          
-          <h1 class="hero-title font-black text-white mb-2.5 sm:mb-3">
-            जिंदगी के साथ भी, <br>
-            <span class="text-lic-yellow underline decoration-lic-yellow/60 decoration-wavy">
-              जिंदगी के बाद भी।
-            </span>
-          </h1>
-
-          <p class="text-xs sm:text-sm md:text-base text-blue-100 mb-5 sm:mb-6 leading-relaxed max-w-xl mx-auto lg:mx-0 font-medium">
-            बिटिया की पढ़ाई व शादी, संपूर्ण परिवार सुरक्षा, या <strong>100% टैक्स-फ्री आजीवन 8% पेंशन</strong>। भारत सरकार की संप्रभु गारंटी वाली LIC योजनाओं से अपना कल सुरक्षित बनाएं।
-          </p>
-
-          <!-- 2 Main CTAs (Full Width on Mobile, Side by Side on Tablet/Desktop) -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 max-w-md mx-auto lg:mx-0 mb-5 sm:mb-6">
-            <a href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20LIC%20के%20बेस्ट%20प्लान%20का%20कोटेशन%20WhatsApp%20पर%20भेजें।" target="_blank" onclick="soundEngine.playChime()" class="btn-tactile w-full py-3.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/40">
-              <i data-lucide="message-circle" class="w-4 h-4 sm:w-5 sm:h-5 fill-white"></i>
-              <span>WhatsApp पर कोटेशन लें</span>
-            </a>
-
-            <a href="#calculator" onclick="soundEngine.playPop()" class="btn-tactile w-full py-3.5 px-4 rounded-xl bg-lic-yellow hover:bg-lic-yellowDark text-lic-blueDark font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-lic-yellow/30">
-              <i data-lucide="calculator" class="w-4 h-4 sm:w-5 sm:h-5"></i>
-              <span>कैलकुलेटर चलाएं</span>
-            </a>
-          </div>
-
-          <!-- Social Proof Mini Pill -->
-          <div class="inline-flex items-center gap-2 p-1.5 px-3 rounded-xl bg-white/10 border border-white/20 backdrop-blur-md text-[11px] sm:text-xs text-blue-100 font-bold">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0"></span>
-            <span>18+ वर्षों से <strong>2,450+ परिवारों</strong> का अटूट वित्तीय विश्वास</span>
-          </div>
-
-        </div>
-
-        <!-- Right Hero: REAL PHOTO OF ADVISOR (Fully Responsive Card) -->
-        <div class="lg:col-span-5 flex justify-center">
+        <!-- 📸 AGENT PHOTO CARD (FIRST ON MOBILE: order-1, ON DESKTOP: lg:order-2) -->
+        <div class="lg:col-span-5 flex justify-center order-1 lg:order-2">
           <div class="w-full max-w-sm glass-lic-card overflow-hidden shadow-2xl border-2 sm:border-4 border-lic-yellow relative animate-float-slow">
             
             <!-- Real Photo of the Advisor -->
@@ -336,7 +301,7 @@
                 <span class="text-[10px] sm:text-[11px] font-black text-lic-blue">ऑनलाइन उपलब्ध (डोरस्टेप सेवा)</span>
               </div>
 
-              <div class="absolute top-2.5 right-2.5 bg-lic-yellow text-lic-blueDark font-black text-[9px] sm:text-[10px] px-2 py-0.5 rounded-full shadow-md">
+              <div class="absolute top-2.5 right-2.5 bg-lic-yellow text-lic-blueDark font-black text-[9px] sm:text-[10px] px-2.5 py-0.5 rounded-full shadow-md">
                 MDRT USA 2025
               </div>
             </div>
@@ -345,10 +310,10 @@
             <div class="p-3.5 sm:p-5 text-slate-800">
               <div class="flex items-center justify-between mb-2">
                 <div>
-                  <h3 class="font-heading font-black text-base sm:text-lg text-lic-blue leading-tight">राजेश शर्मा</h3>
+                  <h3 class="font-heading font-black text-lg sm:text-xl text-lic-blue leading-tight">राजेश शर्मा</h3>
                   <p class="text-[11px] sm:text-xs text-slate-500 font-bold">वरिष्ठ वित्तीय सलाहकार | LIC Of India</p>
                 </div>
-                <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-lic-yellow text-lic-blueDark flex items-center justify-center font-black text-xs sm:text-sm shadow shrink-0">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-lic-yellow text-lic-blueDark flex items-center justify-center font-black text-xs sm:text-sm shadow shrink-0">
                   RS
                 </div>
               </div>
@@ -372,6 +337,41 @@
             </div>
 
           </div>
+        </div>
+
+        <!-- ✍️ HERO TEXT & CTAS (ON MOBILE: order-2, ON DESKTOP: lg:order-1) -->
+        <div class="lg:col-span-7 text-center lg:text-left order-2 lg:order-1">
+          
+          <h1 class="hero-title font-black text-white mb-2.5 sm:mb-3">
+            जिंदगी के साथ भी, <br>
+            <span class="text-lic-yellow underline decoration-lic-yellow/60 decoration-wavy">
+              जिंदगी के बाद भी।
+            </span>
+          </h1>
+
+          <p class="text-xs sm:text-sm md:text-base text-blue-100 mb-5 sm:mb-6 leading-relaxed max-w-xl mx-auto lg:mx-0 font-medium">
+            बिटिया की पढ़ाई व शादी, संपूर्ण परिवार सुरक्षा, या <strong>100% टैक्स-फ्री आजीवन 8% पेंशन</strong>। भारत सरकार की संप्रभु गारंटी वाली LIC योजनाओं से अपना कल सुरक्षित बनाएं।
+          </p>
+
+          <!-- 2 Main CTAs -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 max-w-md mx-auto lg:mx-0 mb-5 sm:mb-6">
+            <a href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20LIC%20के%20बेस्ट%20प्लान%20का%20कोटेशन%20WhatsApp%20पर%20भेजें।" target="_blank" onclick="soundEngine.playChime()" class="btn-tactile w-full py-3.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/40">
+              <i data-lucide="message-circle" class="w-4 h-4 sm:w-5 sm:h-5 fill-white"></i>
+              <span>WhatsApp पर कोटेशन लें</span>
+            </a>
+
+            <a href="#calculator" onclick="soundEngine.playPop()" class="btn-tactile w-full py-3.5 px-4 rounded-xl bg-lic-yellow hover:bg-lic-yellowDark text-lic-blueDark font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-lic-yellow/30">
+              <i data-lucide="calculator" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+              <span>कैलकुलेटर चलाएं</span>
+            </a>
+          </div>
+
+          <!-- Social Proof Mini Pill -->
+          <div class="inline-flex items-center gap-2 p-1.5 px-3 rounded-xl bg-white/10 border border-white/20 backdrop-blur-md text-[11px] sm:text-xs text-blue-100 font-bold">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0"></span>
+            <span>18+ वर्षों से <strong>2,450+ परिवारों</strong> का अटूट वित्तीय विश्वास</span>
+          </div>
+
         </div>
 
       </div>
@@ -724,7 +724,7 @@
     </div>
   </section>
 
-  <!-- 8. "BANK FD vs LIC" COMPARISON TABLE (WITH MOBILE HORIZONTAL SWIPE CUE) -->
+  <!-- 8. "BANK FD vs LIC" COMPARISON TABLE -->
   <section class="py-10 sm:py-16 bg-white border-t border-slate-200">
     <div class="fluid-container">
       <div class="max-w-3xl mx-auto glass-lic-card p-4 sm:p-8 border border-slate-300 shadow-md">
