@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="hi" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   <title>राजेश शर्मा | अधिकृत वरिष्ठ वित्तीय सलाहकार - भारतीय जीवन बीमा निगम (LIC Of India)</title>
   
   <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
@@ -32,21 +32,19 @@
           },
           colors: {
             lic: {
-              // Exact Official LIC Brand Palette
-              blue: '#0B3C7E',        // Iconic LIC Royal Ultramarine
+              blue: '#0B3C7E',        // Official LIC Royal Ultramarine
               blueDark: '#041F47',    // Deep Midnight LIC Blue
-              blueDeep: '#02132D',    // Ultra Deep Foundation
+              blueDeep: '#02132D',    // Base Midnight
               blueSoft: '#EBF3FD',    // Clean Light Blue
-              yellow: '#FFD000',      // Exact Official LIC Golden Yellow
-              yellowDark: '#E5A500',  // Warm Amber Gold
+              yellow: '#FFD000',      // Official LIC Golden Sun Yellow
+              yellowDark: '#E5A500',  // Rich Gold Accent
               yellowSoft: '#FFFBE6',  // Warm Cream Highlight
             }
           },
           animation: {
-            'marquee': 'marquee 22s linear infinite',
+            'marquee': 'marquee 20s linear infinite',
             'float-slow': 'floatSlow 4s ease-in-out infinite',
             'aurora': 'auroraGlow 6s ease-in-out infinite alternate',
-            'border-beam': 'borderBeam 3s linear infinite',
           },
           keyframes: {
             marquee: {
@@ -55,15 +53,11 @@
             },
             floatSlow: {
               '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-8px)' },
+              '50%': { transform: 'translateY(-6px)' },
             },
             auroraGlow: {
-              '0%': { opacity: '0.4', transform: 'scale(1) translate(0, 0)' },
-              '100%': { opacity: '0.7', transform: 'scale(1.15) translate(20px, -15px)' },
-            },
-            borderBeam: {
-              '0%': { transform: 'rotate(0deg)' },
-              '100%': { transform: 'rotate(360deg)' },
+              '0%': { opacity: '0.35', transform: 'scale(1)' },
+              '100%': { opacity: '0.65', transform: 'scale(1.15) translate(15px, -10px)' },
             }
           }
         }
@@ -72,12 +66,14 @@
   </script>
 
   <style>
-    /* Mandatory Responsive Base Reset & Zero Horizontal Scroll */
+    /* Mandatory Responsive Reset & Zero Horizontal Scroll */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
+    
     html.lenis, html.lenis body {
       height: auto;
     }
@@ -86,12 +82,6 @@
     }
     .lenis.lenis-smooth [data-lenis-prevent] {
       overscroll-behavior: contain;
-    }
-    .lenis.lenis-stopped {
-      overflow: hidden;
-    }
-    .lenis.lenis-scrolling iframe {
-      pointer-events: none;
     }
 
     html, body {
@@ -102,76 +92,68 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
-      padding-bottom: 70px;
+      /* Mobile safe area spacing so bottom dock never overlaps content */
+      padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
     }
 
-    /* Fluid Container */
+    /* Fluid Container with Mobile Safe Padding */
     .fluid-container {
       width: 100%;
-      max-width: min(100% - 1.5rem, 1240px);
+      max-width: min(100% - 1.25rem, 1220px);
       margin-inline: auto;
-      padding-inline: clamp(0.75rem, 3vw, 2rem);
+      padding-inline: clamp(0.75rem, 3vw, 1.75rem);
     }
 
-    /* Fluid Typography clamp */
+    /* Fluid Typography clamp optimized for Mobile to Desktop */
     .hero-title {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(2.2rem, 5vw + 0.4rem, 3.8rem);
+      font-size: clamp(1.85rem, 6vw + 0.2rem, 3.8rem);
       line-height: 1.15;
     }
     .section-title {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(1.6rem, 3vw + 0.3rem, 2.4rem);
+      font-size: clamp(1.45rem, 4vw + 0.2rem, 2.4rem);
       line-height: 1.22;
     }
 
-    /* Spring Physics Tactile Buttons */
+    /* Spring Physics Tactile Buttons (Minimum 44px height for mobile thumbs) */
     .btn-tactile {
-      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, filter 0.15s ease;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease, filter 0.15s ease;
       touch-action: manipulation;
-    }
-    .btn-tactile:hover {
-      transform: translateY(-2px) scale(1.02);
-      filter: brightness(1.05);
+      user-select: none;
     }
     .btn-tactile:active {
-      transform: translateY(1px) scale(0.96);
-      filter: brightness(0.95);
+      transform: scale(0.96);
     }
 
-    /* 3D Glass Surface with Gold Rim */
+    /* 3D Glass Surface */
     .glass-lic-card {
       background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border: 1.5px solid rgba(255, 208, 0, 0.35);
       border-radius: 1.25rem;
-      box-shadow: 0 10px 30px -5px rgba(11, 60, 126, 0.1);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 24px -4px rgba(11, 60, 126, 0.08);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .glass-lic-card:hover {
-      border-color: #FFD000;
-      box-shadow: 0 20px 40px -10px rgba(11, 60, 126, 0.22);
-      transform: translateY(-4px);
-    }
-
-    /* Aurora Glow Elements */
-    .aurora-gold {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 208, 0, 0.25) 0%, rgba(255, 208, 0, 0) 70%);
-      filter: blur(60px);
-      pointer-events: none;
-    }
-    .aurora-blue {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(11, 60, 126, 0.45) 0%, rgba(4, 31, 71, 0) 70%);
-      filter: blur(70px);
-      pointer-events: none;
+    @media (hover: hover) {
+      .glass-lic-card:hover {
+        border-color: #FFD000;
+        box-shadow: 0 16px 36px -8px rgba(11, 60, 126, 0.18);
+        transform: translateY(-3px);
+      }
     }
 
-    /* Custom Range Slider with Gold Glow */
+    /* Mobile Inputs: Prevent auto-zoom on iPhone Safari by keeping font-size >= 16px */
+    input[type="text"], input[type="tel"] {
+      font-size: 16px !important;
+    }
+
+    /* Custom Slider with Large Touch-Friendly Thumb (32px) */
     input[type=range] {
       -webkit-appearance: none;
       width: 100%;
@@ -183,23 +165,20 @@
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: #FFD000;
       border: 4px solid #0B3C7E;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(255, 208, 0, 0.6);
-      transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    input[type=range]::-webkit-slider-thumb:hover {
-      transform: scale(1.18);
+      box-shadow: 0 4px 12px rgba(255, 208, 0, 0.6);
+      transition: transform 0.12s ease;
     }
     input[type=range]::-webkit-slider-thumb:active {
-      transform: scale(1.3);
+      transform: scale(1.25);
     }
 
-    /* Sound Visualizer Waves */
+    /* Sound Equalizer Bars */
     .sound-bar {
       width: 3px;
       background-color: #FFD000;
@@ -212,195 +191,182 @@
       0% { height: 4px; }
       100% { height: 16px; }
     }
+
+    /* Mobile Safe Dock */
+    .mobile-bottom-dock {
+      padding-bottom: max(6px, env(safe-area-inset-bottom, 6px));
+    }
   </style>
 </head>
 <body class="relative">
 
   <!-- 1. OFFICIAL TOP SOVEREIGN GUARANTEE & MARQUEE BAR -->
   <div class="bg-lic-yellow text-lic-blueDark py-1.5 overflow-hidden whitespace-nowrap border-b-2 border-lic-yellowDark select-none relative z-50">
-    <div class="inline-flex animate-marquee text-xs sm:text-sm font-black items-center gap-8">
-      <span class="inline-flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-lic-blueDark"></i> धारा 37 LIC Act 1956: भारत सरकार द्वारा आपकी हर पाई पर 100% सॉवरेन गारंटी</span>
-      <span class="inline-flex items-center gap-1.5"><i data-lucide="sparkles" class="w-4 h-4 text-lic-blue"></i> आज 23 नए परिवारों ने अपनी पॉलिसी बुक की</span>
-      <span class="inline-flex items-center gap-1.5"><i data-lucide="award" class="w-4 h-4 text-emerald-800"></i> 99.4% क्लेम सेटलमेंट रिकॉर्ड | डोरस्टेप फ्री सेवा</span>
-      <span class="inline-flex items-center gap-1.5"><i data-lucide="file-check" class="w-4 h-4 text-emerald-800"></i> 100% टैक्स फ्री मैच्योरिटी (Section 80C & 10(10D))</span>
+    <div class="inline-flex animate-marquee text-[11px] sm:text-xs font-black items-center gap-6 sm:gap-8">
+      <span class="inline-flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-lic-blueDark"></i> धारा 37 LIC Act 1956: भारत सरकार द्वारा 100% सॉवरेन गारंटी</span>
+      <span class="inline-flex items-center gap-1"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-lic-blue"></i> आज 23 नए परिवारों ने अपनी पॉलिसी बुक की</span>
+      <span class="inline-flex items-center gap-1"><i data-lucide="award" class="w-3.5 h-3.5 text-emerald-800"></i> 99.4% क्लेम सेटलमेंट रिकॉर्ड | फ्री डोरस्टेप सेवा</span>
+      <span class="inline-flex items-center gap-1"><i data-lucide="file-check" class="w-3.5 h-3.5 text-emerald-800"></i> 100% टैक्स फ्री मैच्योरिटी (Sec 80C & 10(10D))</span>
 
       <!-- Seamless Repeat -->
-      <span class="inline-flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-lic-blueDark"></i> धारा 37 LIC Act 1956: भारत सरकार द्वारा आपकी हर पाई पर 100% सॉवरेन गारंटी</span>
-      <span class="inline-flex items-center gap-1.5"><i data-lucide="sparkles" class="w-4 h-4 text-lic-blue"></i> आज 23 नए परिवारों ने अपनी पॉलिसी बुक की</span>
-      <span class="inline-flex items-center gap-1.5"><i data-lucide="award" class="w-4 h-4 text-emerald-800"></i> 99.4% क्लेम सेटलमेंट रिकॉर्ड | डोरस्टेप फ्री सेवा</span>
-      <span class="inline-flex items-center gap-1.5"><i data-lucide="file-check" class="w-4 h-4 text-emerald-800"></i> 100% टैक्स फ्री मैच्योरिटी (Section 80C & 10(10D))</span>
+      <span class="inline-flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-lic-blueDark"></i> धारा 37 LIC Act 1956: भारत सरकार द्वारा 100% सॉवरेन गारंटी</span>
+      <span class="inline-flex items-center gap-1"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-lic-blue"></i> आज 23 नए परिवारों ने अपनी पॉलिसी बुक की</span>
+      <span class="inline-flex items-center gap-1"><i data-lucide="award" class="w-3.5 h-3.5 text-emerald-800"></i> 99.4% क्लेम सेटलमेंट रिकॉर्ड | फ्री डोरस्टेप सेवा</span>
+      <span class="inline-flex items-center gap-1"><i data-lucide="file-check" class="w-3.5 h-3.5 text-emerald-800"></i> 100% टैक्स फ्री मैच्योरिटी (Sec 80C & 10(10D))</span>
     </div>
   </div>
 
-  <!-- 2. HIGH-TRUST HEADER (EXACT LIC DUAL LOGO + SOUND TOGGLE) -->
+  <!-- 2. MOBILE-FIRST RESPONSIVE HEADER -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-    <div class="fluid-container py-2.5 flex items-center justify-between">
+    <div class="fluid-container py-2 sm:py-2.5 flex items-center justify-between gap-2">
       
-      <!-- Authentic Dual-Block LIC Logo -->
-      <div class="flex items-center gap-3">
-        <div class="inline-flex items-stretch rounded-lg overflow-hidden border-2 border-lic-blue shadow-md">
-          <!-- Blue Box: Iconic Hands & Diya Emblem -->
-          <div class="bg-lic-blue px-2.5 py-1.5 flex items-center justify-center">
-            <svg viewBox="0 0 100 100" class="w-8 h-8 sm:w-10 sm:h-10" fill="none">
-              <!-- Golden Diya Flame -->
-              <path d="M50 12 C44 28, 38 38, 50 54 C62 38, 56 28, 50 12 Z" fill="#FFD000" />
-              <!-- Diya Base -->
-              <path d="M28 54 Q50 62 72 54 Q50 72 28 54 Z" fill="#FFD000" />
-              <!-- White Cupped Protective Hands -->
-              <path d="M20 58 Q14 74 34 82 Q50 86 50 86 Q50 86 66 82 Q86 74 80 58 Q70 72 50 75 Q30 72 20 58 Z" fill="#FFFFFF" />
-            </svg>
-          </div>
-
-          <!-- Yellow Box: Official Bilingual Brand Text -->
-          <div class="bg-lic-yellow px-3 py-1 flex flex-col justify-center">
-            <span class="text-xs sm:text-sm font-black text-lic-blue leading-tight tracking-tight">
-              भारतीय जीवन बीमा निगम
-            </span>
-            <span class="text-[9px] sm:text-[10px] font-extrabold text-lic-blue leading-tight tracking-wider">
-              LIFE INSURANCE CORPORATION OF INDIA
-            </span>
-            <span class="text-[8px] font-bold text-amber-900 tracking-widest -mt-0.5">
-              योगक्षेमं वहाम्यहम्
-            </span>
-          </div>
+      <!-- Authentic LIC Logo -->
+      <a href="#" onclick="soundEngine.playPop()" class="inline-flex items-stretch rounded-lg overflow-hidden border-2 border-lic-blue shadow-sm shrink-0">
+        <!-- Blue Emblem Block -->
+        <div class="bg-lic-blue px-2 py-1 sm:px-2.5 sm:py-1.5 flex items-center justify-center">
+          <svg viewBox="0 0 100 100" class="w-7 h-7 sm:w-9 sm:h-9" fill="none">
+            <path d="M50 12 C44 28, 38 38, 50 54 C62 38, 56 28, 50 12 Z" fill="#FFD000" />
+            <path d="M28 54 Q50 62 72 54 Q50 72 28 54 Z" fill="#FFD000" />
+            <path d="M20 58 Q14 74 34 82 Q50 86 50 86 Q50 86 66 82 Q86 74 80 58 Q70 72 50 75 Q30 72 20 58 Z" fill="#FFFFFF" />
+          </svg>
         </div>
-
-        <div class="hidden lg:block border-l-2 border-slate-200 pl-3">
-          <p class="text-xs font-black text-lic-blue">राजेश शर्मा</p>
-          <p class="text-[10px] text-slate-500 font-bold">वरिष्ठ वित्तीय सलाहकार | MDRT (USA)</p>
+        <!-- Yellow Text Block -->
+        <div class="bg-lic-yellow px-2 py-0.5 sm:px-3 sm:py-1 flex flex-col justify-center">
+          <span class="text-[11px] sm:text-xs font-black text-lic-blue leading-tight tracking-tight">
+            भारतीय जीवन बीमा निगम
+          </span>
+          <span class="text-[8px] sm:text-[9px] font-extrabold text-lic-blue leading-tight tracking-wider">
+            LIC OF INDIA
+          </span>
         </div>
-      </div>
+      </a>
 
-      <!-- Sound Engine Toggle & Direct Contact Buttons -->
-      <div class="flex items-center gap-2 sm:gap-3">
+      <!-- Header Quick Actions (Optimized for Mobile) -->
+      <div class="flex items-center gap-1.5 sm:gap-2.5">
         
-        <!-- Interactive Sound Engine Toggle (Magical Audio Experience) -->
-        <button id="soundToggleBtn" onclick="toggleSoundEngine()" class="btn-tactile px-2.5 py-1.5 rounded-xl bg-lic-yellowSoft border-2 border-lic-yellow text-lic-blue font-black text-xs flex items-center gap-1.5 shadow-sm">
-          <div id="soundBars" class="flex items-center gap-0.5 h-4">
+        <!-- Sound Toggle Button -->
+        <button id="soundToggleBtn" onclick="toggleSoundEngine()" aria-label="साउंड चालू / बंद करें" class="btn-tactile px-2.5 py-1.5 rounded-xl bg-lic-yellowSoft border border-lic-yellow text-lic-blue font-black text-xs flex items-center gap-1.5 shadow-sm">
+          <div id="soundBars" class="flex items-center gap-0.5 h-3.5">
             <span class="sound-bar"></span>
             <span class="sound-bar"></span>
             <span class="sound-bar"></span>
           </div>
-          <span id="soundText" class="hidden sm:inline text-[11px] font-extrabold">साउंड चालू</span>
+          <span id="soundText" class="hidden md:inline text-[11px] font-extrabold">साउंड</span>
         </button>
 
-        <a href="tel:+919876543210" onclick="soundEngine.playPop()" class="btn-tactile px-3 py-2 rounded-xl bg-lic-blueSoft border border-blue-200 text-lic-blue font-black text-xs flex items-center gap-1.5">
+        <!-- Direct Call Button -->
+        <a href="tel:+919876543210" onclick="soundEngine.playPop()" aria-label="फोन कॉल करें" class="btn-tactile px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl bg-lic-blueSoft border border-blue-200 text-lic-blue font-black text-xs flex items-center gap-1">
           <i data-lucide="phone-call" class="w-3.5 h-3.5 text-lic-blue"></i>
-          <span class="hidden md:inline">+91 98765 43210</span>
-          <span class="md:hidden">कॉल</span>
+          <span class="hidden sm:inline">+91 98765 43210</span>
         </a>
 
-        <a href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20LIC%20पॉलिसी%20की%20फ्री%20सलाह%20चाहिए।" target="_blank" onclick="soundEngine.playChime()" class="btn-tactile px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs flex items-center gap-1.5 shadow-md shadow-emerald-700/20">
-          <i data-lucide="message-circle" class="w-4 h-4 fill-white"></i>
-          <span>WhatsApp चैट</span>
+        <!-- Direct WhatsApp Chat (Header) -->
+        <a href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20LIC%20पॉलिसी%20की%20फ्री%20सलाह%20चाहिए।" target="_blank" onclick="soundEngine.playChime()" class="btn-tactile px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs flex items-center gap-1.5 shadow-sm">
+          <i data-lucide="message-circle" class="w-3.5 h-3.5 fill-white"></i>
+          <span>चैट</span>
         </a>
       </div>
 
     </div>
   </header>
 
-  <!-- 3. HERO SECTION (AURORA GLOW + REAL ADVISOR PHOTO + SPRING PHYSICS) -->
-  <section class="relative bg-gradient-to-b from-lic-blue via-lic-blueDark to-lic-blue text-white pt-8 pb-16 sm:pt-16 sm:pb-24 overflow-hidden">
+  <!-- 3. HERO SECTION (100% RESPONSIVE ON ALL DEVICES) -->
+  <section class="relative bg-gradient-to-b from-lic-blue via-lic-blueDark to-lic-blue text-white pt-6 pb-12 sm:pt-14 sm:pb-20 overflow-hidden">
     
-    <!-- Magical Aurora Mesh Radiant Light Glows -->
-    <div class="aurora-gold w-96 h-96 top-[-50px] left-[-50px] animate-aurora"></div>
-    <div class="aurora-blue w-[500px] h-[500px] bottom-[-100px] right-[-100px] animate-aurora"></div>
-    <div class="aurora-gold w-72 h-72 top-[40%] right-[30%] opacity-30"></div>
-
     <div class="fluid-container relative z-10">
       
       <!-- Top Trust Badges -->
-      <div class="flex items-center justify-center lg:justify-start gap-2 flex-wrap mb-4">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-lic-yellow text-lic-blueDark text-xs font-black uppercase tracking-wider shadow-lg shadow-lic-yellow/30 animate-pulse">
+      <div class="flex items-center justify-center lg:justify-start gap-1.5 sm:gap-2 flex-wrap mb-3.5">
+        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-lic-yellow text-lic-blueDark text-[10px] sm:text-xs font-black uppercase tracking-wider shadow">
           ⭐ MDRT (USA) Life Member 2025
         </span>
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold border border-white/30 backdrop-blur-sm">
-          🏛️ अधिकृत LIC एजेंसी कोड: 0487921X
+        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/20 text-white text-[10px] sm:text-xs font-bold border border-white/30 backdrop-blur-sm">
+          🏛️ एजेंसी कोड: 0487921X
         </span>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
         
-        <!-- Left Hero Copy -->
+        <!-- Left Hero Text -->
         <div class="lg:col-span-7 text-center lg:text-left">
           
-          <h1 class="hero-title font-black text-white mb-3">
+          <h1 class="hero-title font-black text-white mb-2.5 sm:mb-3">
             जिंदगी के साथ भी, <br>
             <span class="text-lic-yellow underline decoration-lic-yellow/60 decoration-wavy">
               जिंदगी के बाद भी।
             </span>
           </h1>
 
-          <p class="text-xs sm:text-base text-blue-100 mb-6 leading-relaxed max-w-xl mx-auto lg:mx-0 font-medium">
+          <p class="text-xs sm:text-sm md:text-base text-blue-100 mb-5 sm:mb-6 leading-relaxed max-w-xl mx-auto lg:mx-0 font-medium">
             बिटिया की पढ़ाई व शादी, संपूर्ण परिवार सुरक्षा, या <strong>100% टैक्स-फ्री आजीवन 8% पेंशन</strong>। भारत सरकार की संप्रभु गारंटी वाली LIC योजनाओं से अपना कल सुरक्षित बनाएं।
           </p>
 
-          <!-- 2 Main CTAs with Tactile Physics & Sound Hook -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md mx-auto lg:mx-0 mb-6">
-            <a href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20LIC%20के%20बेस्ट%20प्लान%20का%20कोटेशन%20WhatsApp%20पर%20भेजें।" target="_blank" onclick="soundEngine.playChime()" class="btn-tactile py-4 px-5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-sm sm:text-base flex items-center justify-center gap-2 shadow-xl shadow-emerald-950/40">
-              <i data-lucide="message-circle" class="w-5 h-5 fill-white"></i>
+          <!-- 2 Main CTAs (Full Width on Mobile, Side by Side on Tablet/Desktop) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 max-w-md mx-auto lg:mx-0 mb-5 sm:mb-6">
+            <a href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20LIC%20के%20बेस्ट%20प्लान%20का%20कोटेशन%20WhatsApp%20पर%20भेजें।" target="_blank" onclick="soundEngine.playChime()" class="btn-tactile w-full py-3.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/40">
+              <i data-lucide="message-circle" class="w-4 h-4 sm:w-5 sm:h-5 fill-white"></i>
               <span>WhatsApp पर कोटेशन लें</span>
             </a>
 
-            <a href="#calculator" onclick="soundEngine.playPop()" class="btn-tactile py-4 px-5 rounded-xl bg-lic-yellow hover:bg-lic-yellowDark text-lic-blueDark font-black text-sm sm:text-base flex items-center justify-center gap-2 shadow-xl shadow-lic-yellow/30">
-              <i data-lucide="calculator" class="w-5 h-5"></i>
+            <a href="#calculator" onclick="soundEngine.playPop()" class="btn-tactile w-full py-3.5 px-4 rounded-xl bg-lic-yellow hover:bg-lic-yellowDark text-lic-blueDark font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-lic-yellow/30">
+              <i data-lucide="calculator" class="w-4 h-4 sm:w-5 sm:h-5"></i>
               <span>कैलकुलेटर चलाएं</span>
             </a>
           </div>
 
-          <!-- Social Proof Pill -->
-          <div class="inline-flex items-center gap-2 p-2 px-3.5 rounded-xl bg-white/10 border border-white/20 backdrop-blur-md text-xs text-blue-100 font-bold">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+          <!-- Social Proof Mini Pill -->
+          <div class="inline-flex items-center gap-2 p-1.5 px-3 rounded-xl bg-white/10 border border-white/20 backdrop-blur-md text-[11px] sm:text-xs text-blue-100 font-bold">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0"></span>
             <span>18+ वर्षों से <strong>2,450+ परिवारों</strong> का अटूट वित्तीय विश्वास</span>
           </div>
 
         </div>
 
-        <!-- Right Hero: REAL PHOTO OF ADVISOR (Framed in Gold & Blue Glow) -->
+        <!-- Right Hero: REAL PHOTO OF ADVISOR (Fully Responsive Card) -->
         <div class="lg:col-span-5 flex justify-center">
-          <div class="w-full max-w-sm glass-lic-card overflow-hidden shadow-2xl border-4 border-lic-yellow relative animate-float-slow">
+          <div class="w-full max-w-sm glass-lic-card overflow-hidden shadow-2xl border-2 sm:border-4 border-lic-yellow relative animate-float-slow">
             
             <!-- Real Photo of the Advisor -->
-            <div class="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-100">
-              <img src="/images/advisor.jpg" alt="राजेश शर्मा - वरिष्ठ LIC सलाहकार" class="w-full h-full object-cover object-top" />
+            <div class="relative aspect-[4/3] sm:aspect-square w-full overflow-hidden bg-slate-100">
+              <img src="/images/advisor.jpg" alt="राजेश शर्मा - वरिष्ठ LIC सलाहकार" class="w-full h-full object-cover object-top" loading="eager" />
               
               <!-- Floating Live Status Badge on Photo -->
-              <div class="absolute bottom-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-lg border border-slate-200 flex items-center gap-1.5 shadow-md">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span class="text-[11px] font-black text-lic-blue">ऑनलाइन उपलब्ध (डोरस्टेप सेवा)</span>
+              <div class="absolute bottom-2.5 left-2.5 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-lg border border-slate-200 flex items-center gap-1.5 shadow-md">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
+                <span class="text-[10px] sm:text-[11px] font-black text-lic-blue">ऑनलाइन उपलब्ध (डोरस्टेप सेवा)</span>
               </div>
 
-              <div class="absolute top-3 right-3 bg-lic-yellow text-lic-blueDark font-black text-[10px] px-2.5 py-1 rounded-full shadow-md">
+              <div class="absolute top-2.5 right-2.5 bg-lic-yellow text-lic-blueDark font-black text-[9px] sm:text-[10px] px-2 py-0.5 rounded-full shadow-md">
                 MDRT USA 2025
               </div>
             </div>
 
             <!-- Advisor Details Box -->
-            <div class="p-4 sm:p-5 text-slate-800">
+            <div class="p-3.5 sm:p-5 text-slate-800">
               <div class="flex items-center justify-between mb-2">
                 <div>
-                  <h3 class="font-heading font-black text-lg text-lic-blue leading-tight">राजेश शर्मा</h3>
-                  <p class="text-xs text-slate-500 font-bold">वरिष्ठ वित्तीय सलाहकार | LIC Of India</p>
+                  <h3 class="font-heading font-black text-base sm:text-lg text-lic-blue leading-tight">राजेश शर्मा</h3>
+                  <p class="text-[11px] sm:text-xs text-slate-500 font-bold">वरिष्ठ वित्तीय सलाहकार | LIC Of India</p>
                 </div>
-                <div class="w-9 h-9 rounded-xl bg-lic-yellow text-lic-blueDark flex items-center justify-center font-black text-sm shadow">
+                <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-lic-yellow text-lic-blueDark flex items-center justify-center font-black text-xs sm:text-sm shadow shrink-0">
                   RS
                 </div>
               </div>
 
-              <!-- Quick Feature Pills -->
-              <div class="grid grid-cols-2 gap-2 my-3 text-[11px] font-bold">
+              <!-- Quick Highlight Pills -->
+              <div class="grid grid-cols-2 gap-1.5 sm:gap-2 my-2.5 text-[10px] sm:text-[11px] font-bold">
                 <div class="p-2 rounded-lg bg-lic-blueSoft border border-blue-200 text-lic-blue flex items-center gap-1.5">
-                  <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                  <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
                   <span>100% सरकारी गारंटी</span>
                 </div>
                 <div class="p-2 rounded-lg bg-lic-blueSoft border border-blue-200 text-lic-blue flex items-center gap-1.5">
-                  <i data-lucide="award" class="w-3.5 h-3.5 text-amber-600"></i>
+                  <i data-lucide="award" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
                   <span>99.4% क्लेम सेटल</span>
                 </div>
               </div>
 
-              <a href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20आपसे%20पॉलिसी%20कंसल्टेशन%20मीटिंग%20बुक%20करनी%20है।" target="_blank" onclick="soundEngine.playPop()" class="btn-tactile w-full py-2.5 rounded-xl bg-lic-blue hover:bg-lic-blueDark text-white font-black text-xs flex items-center justify-center gap-2 shadow">
-                <i data-lucide="calendar" class="w-4 h-4 text-lic-yellow"></i>
+              <a href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20आपसे%20पॉलिसी%20कंसल्टेशन%20मीटिंग%20बुक%20करनी%20है।" target="_blank" onclick="soundEngine.playPop()" class="btn-tactile w-full py-2.5 rounded-xl bg-lic-blue hover:bg-lic-blueDark text-white font-black text-xs flex items-center justify-center gap-1.5 shadow">
+                <i data-lucide="calendar" class="w-3.5 h-3.5 text-lic-yellow"></i>
                 <span>फ्री डोरस्टेप / ऑनलाइन मीटिंग बुक करें</span>
               </a>
             </div>
@@ -413,95 +379,95 @@
     </div>
   </section>
 
-  <!-- 4. OFFICIAL NUMERICAL PROOF (ANIMATED STATS) -->
-  <section class="bg-white border-b border-slate-200 py-6 sm:py-8 shadow-sm">
+  <!-- 4. OFFICIAL NUMERICAL STATS (2-COL ON MOBILE, 4-COL ON DESKTOP) -->
+  <section class="bg-white border-b border-slate-200 py-4 sm:py-6 shadow-sm">
     <div class="fluid-container">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 text-center">
         
-        <div class="p-4 rounded-xl bg-lic-blueSoft border border-blue-100 shadow-sm">
-          <div class="text-2xl sm:text-3xl font-black font-heading text-lic-blue">
+        <div class="p-2.5 sm:p-3.5 rounded-xl bg-lic-blueSoft border border-blue-100 shadow-sm">
+          <div class="text-xl sm:text-3xl font-black font-heading text-lic-blue">
             ₹<span class="odometer" data-target="85">0</span>+ Cr
           </div>
-          <p class="text-[11px] sm:text-xs text-slate-600 font-extrabold mt-0.5">सम एश्योर्ड डिलीवर्ड</p>
+          <p class="text-[10px] sm:text-xs text-slate-600 font-extrabold mt-0.5">सम एश्योर्ड डिलीवर्ड</p>
         </div>
 
-        <div class="p-4 rounded-xl bg-lic-blueSoft border border-blue-100 shadow-sm">
-          <div class="text-2xl sm:text-3xl font-black font-heading text-emerald-700">
+        <div class="p-2.5 sm:p-3.5 rounded-xl bg-lic-blueSoft border border-blue-100 shadow-sm">
+          <div class="text-xl sm:text-3xl font-black font-heading text-emerald-700">
             <span class="odometer" data-target="2450">0</span>+
           </div>
-          <p class="text-[11px] sm:text-xs text-slate-600 font-extrabold mt-0.5">सुरक्षित परिवार</p>
+          <p class="text-[10px] sm:text-xs text-slate-600 font-extrabold mt-0.5">सुरक्षित परिवार</p>
         </div>
 
-        <div class="p-4 rounded-xl bg-lic-blueSoft border border-blue-100 shadow-sm">
-          <div class="text-2xl sm:text-3xl font-black font-heading text-lic-blue">
+        <div class="p-2.5 sm:p-3.5 rounded-xl bg-lic-blueSoft border border-blue-100 shadow-sm">
+          <div class="text-xl sm:text-3xl font-black font-heading text-lic-blue">
             <span class="odometer" data-target="99">0</span>.4%
           </div>
-          <p class="text-[11px] sm:text-xs text-slate-600 font-extrabold mt-0.5">अविवादित क्लेम रिकॉर्ड</p>
+          <p class="text-[10px] sm:text-xs text-slate-600 font-extrabold mt-0.5">अविवादित क्लेम रिकॉर्ड</p>
         </div>
 
-        <div class="p-4 rounded-xl bg-lic-blueSoft border border-blue-100 shadow-sm">
-          <div class="text-2xl sm:text-3xl font-black font-heading text-amber-600">
+        <div class="p-2.5 sm:p-3.5 rounded-xl bg-lic-blueSoft border border-blue-100 shadow-sm">
+          <div class="text-xl sm:text-3xl font-black font-heading text-amber-600">
             <span class="odometer" data-target="18">0</span>+ वर्ष
           </div>
-          <p class="text-[11px] sm:text-xs text-slate-600 font-extrabold mt-0.5">समर्पित सेवा</p>
+          <p class="text-[10px] sm:text-xs text-slate-600 font-extrabold mt-0.5">समर्पित सेवा</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- 5. "20-SECOND SMART PLAN FINDER" (INTERACTIVE APP WIDGET WITH AUDIO POP) -->
-  <section id="quickQuiz" class="py-12 sm:py-16 bg-slate-50">
+  <!-- 5. "20-SECOND SMART PLAN FINDER" (INTERACTIVE APP WIDGET) -->
+  <section id="quickQuiz" class="py-10 sm:py-16 bg-slate-50">
     <div class="fluid-container">
-      <div class="glass-lic-card p-5 sm:p-8 border-2 border-lic-blue shadow-xl">
+      <div class="glass-lic-card p-4 sm:p-8 border-2 border-lic-blue shadow-xl">
         
-        <div class="text-center max-w-xl mx-auto mb-6">
-          <span class="px-3 py-1 rounded-full bg-lic-yellow text-lic-blueDark font-black text-xs uppercase tracking-wide">
+        <div class="text-center max-w-xl mx-auto mb-5">
+          <span class="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-lic-yellow text-lic-blueDark font-black text-[10px] sm:text-xs uppercase tracking-wide">
             Interactive Policy Selector
           </span>
-          <h2 class="text-xl sm:text-2xl font-black font-heading text-lic-blue mt-2">
+          <h2 class="text-lg sm:text-2xl font-black font-heading text-lic-blue mt-1.5">
             20 सेकंड में अपने लिए सही LIC योजना चुनें
           </h2>
-          <p class="text-xs sm:text-sm text-slate-600 mt-1">
-            अपने प्रमुख लक्ष्य पर टैप करें, नीचे तुरंत सही योजना और कोटेशन आ जाएगा:
+          <p class="text-[11px] sm:text-xs text-slate-600 mt-1">
+            अपने प्रमुख लक्ष्य पर टैप करें, नीचे तुरंत सही योजना आ जाएगी:
           </p>
         </div>
 
-        <!-- Goal Selection Buttons -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-6">
-          <button onclick="selectGoal('child')" id="btnGoalChild" class="quiz-btn btn-tactile p-3 rounded-xl border-2 border-lic-blue bg-lic-blue text-white text-xs font-bold text-center flex flex-col items-center gap-1.5 shadow">
-            <i data-lucide="graduation-cap" class="w-5 h-5 text-lic-yellow"></i>
+        <!-- Goal Selection Buttons (2x2 on Mobile) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-5">
+          <button onclick="selectGoal('child')" id="btnGoalChild" class="quiz-btn btn-tactile p-2.5 sm:p-3 rounded-xl border-2 border-lic-blue bg-lic-blue text-white text-[11px] sm:text-xs font-bold text-center flex flex-col items-center gap-1 shadow">
+            <i data-lucide="graduation-cap" class="w-4 h-4 sm:w-5 sm:h-5 text-lic-yellow"></i>
             <span>बच्चों की शिक्षा व शादी</span>
           </button>
 
-          <button onclick="selectGoal('pension')" id="btnGoalPension" class="quiz-btn btn-tactile p-3 rounded-xl border-2 border-slate-200 bg-slate-50 text-slate-800 text-xs font-bold text-center flex flex-col items-center gap-1.5 hover:border-lic-blue">
-            <i data-lucide="palm-tree" class="w-5 h-5 text-emerald-600"></i>
+          <button onclick="selectGoal('pension')" id="btnGoalPension" class="quiz-btn btn-tactile p-2.5 sm:p-3 rounded-xl border-2 border-slate-200 bg-slate-50 text-slate-800 text-[11px] sm:text-xs font-bold text-center flex flex-col items-center gap-1 hover:border-lic-blue">
+            <i data-lucide="palm-tree" class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600"></i>
             <span>आजीवन 8% पेंशन</span>
           </button>
 
-          <button onclick="selectGoal('term')" id="btnGoalTerm" class="quiz-btn btn-tactile p-3 rounded-xl border-2 border-slate-200 bg-slate-50 text-slate-800 text-xs font-bold text-center flex flex-col items-center gap-1.5 hover:border-lic-blue">
-            <i data-lucide="shield" class="w-5 h-5 text-blue-600"></i>
+          <button onclick="selectGoal('term')" id="btnGoalTerm" class="quiz-btn btn-tactile p-2.5 sm:p-3 rounded-xl border-2 border-slate-200 bg-slate-50 text-slate-800 text-[11px] sm:text-xs font-bold text-center flex flex-col items-center gap-1 hover:border-lic-blue">
+            <i data-lucide="shield" class="w-4 h-4 sm:w-5 sm:h-5 text-blue-600"></i>
             <span>₹1 करोड़ प्योर टर्म</span>
           </button>
 
-          <button onclick="selectGoal('savings')" id="btnGoalSavings" class="quiz-btn btn-tactile p-3 rounded-xl border-2 border-slate-200 bg-slate-50 text-slate-800 text-xs font-bold text-center flex flex-col items-center gap-1.5 hover:border-lic-blue">
-            <i data-lucide="coins" class="w-5 h-5 text-amber-600"></i>
-            <span>FD से बेहतर गारंटीड बचत</span>
+          <button onclick="selectGoal('savings')" id="btnGoalSavings" class="quiz-btn btn-tactile p-2.5 sm:p-3 rounded-xl border-2 border-slate-200 bg-slate-50 text-slate-800 text-[11px] sm:text-xs font-bold text-center flex flex-col items-center gap-1 hover:border-lic-blue">
+            <i data-lucide="coins" class="w-4 h-4 sm:w-5 sm:h-5 text-amber-600"></i>
+            <span>FD से बेहतर बचत</span>
           </button>
         </div>
 
         <!-- Dynamic Recommendation Result Card -->
-        <div id="quizResultBox" class="p-5 rounded-2xl bg-gradient-to-r from-lic-blue to-lic-blueDark text-white border-2 border-lic-yellow flex flex-col sm:flex-row items-center justify-between gap-5 shadow-lg">
-          <div class="text-center sm:text-left">
-            <span class="inline-block px-2 py-0.5 rounded bg-lic-yellow text-lic-blueDark text-[11px] font-black uppercase mb-1">
+        <div id="quizResultBox" class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-lic-blue to-lic-blueDark text-white border-2 border-lic-yellow flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-5 shadow-lg text-center sm:text-left">
+          <div>
+            <span class="inline-block px-2 py-0.5 rounded bg-lic-yellow text-lic-blueDark text-[10px] font-black uppercase mb-1">
               अनुशंसित योजना (Best Match)
             </span>
-            <h3 id="quizPlanTitle" class="text-lg sm:text-xl font-black text-white">LIC जीवन लाभ (Table 936)</h3>
-            <p id="quizPlanDesc" class="text-xs text-blue-100 mt-1 max-w-md">
+            <h3 id="quizPlanTitle" class="text-base sm:text-xl font-black text-white">LIC जीवन लाभ (Table 936)</h3>
+            <p id="quizPlanDesc" class="text-[11px] sm:text-xs text-blue-100 mt-1 max-w-md leading-relaxed">
               सीमित समय तक प्रीमियम भरें और 16 या 21 वर्ष बाद मुश्त गारंटीड फंड पाएं। पिता की अनुपस्थिति में भी आगे के सारे प्रीमियम माफ़!
             </p>
           </div>
-          <a id="quizPlanBtn" href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20LIC%20जीवन%20लाभ%20का%20कोटेशन%20चाहिए।" target="_blank" onclick="soundEngine.playChime()" class="btn-tactile shrink-0 px-6 py-3.5 rounded-xl bg-lic-yellow hover:bg-lic-yellowDark text-lic-blueDark font-black text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-lic-yellow/40">
+          <a id="quizPlanBtn" href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20LIC%20जीवन%20लाभ%20का%20कोटेशन%20चाहिए।" target="_blank" onclick="soundEngine.playChime()" class="btn-tactile w-full sm:w-auto shrink-0 px-5 py-3 rounded-xl bg-lic-yellow hover:bg-lic-yellowDark text-lic-blueDark font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow-lg">
             <span>इसका फ्री कोटेशन लें →</span>
           </a>
         </div>
@@ -510,66 +476,66 @@
     </div>
   </section>
 
-  <!-- 6. FEATURED PLANS WITH REAL INDIAN PHOTOS (FAMILY & RETIREMENT) -->
-  <section class="py-14 sm:py-20 bg-white border-t border-slate-200">
+  <!-- 6. FEATURED PLANS WITH REAL PHOTOS (FAMILY & RETIREMENT) -->
+  <section class="py-10 sm:py-16 bg-white border-t border-slate-200">
     <div class="fluid-container">
       
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <span class="px-3.5 py-1 rounded-full bg-lic-yellow text-lic-blueDark font-black text-xs uppercase">
+      <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+        <span class="px-3 py-0.5 rounded-full bg-lic-yellow text-lic-blueDark font-black text-[10px] sm:text-xs uppercase">
           लोकप्रिय जीवन योजनाएं
         </span>
-        <h2 class="section-title font-black text-lic-blue mt-3 mb-2">
+        <h2 class="section-title font-black text-lic-blue mt-2 mb-1.5">
           हर जीवन-चरण के लिए <span class="text-amber-600">विश्वसनीय सुरक्षा</span>
         </h2>
-        <p class="text-xs sm:text-sm text-slate-600">
+        <p class="text-[11px] sm:text-xs text-slate-600">
           असली परिवारों की खुशियों को सुरक्षित रखने वाले दो सर्वाधिक लोकप्रिय प्लान:
         </p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
         
         <!-- Featured Card 1: REAL INDIAN FAMILY PHOTO (Jeevan Labh) -->
         <div class="glass-lic-card overflow-hidden border-2 border-slate-200 hover:border-lic-blue transition-all shadow-lg flex flex-col justify-between">
           <div>
-            <div class="relative h-56 sm:h-64 w-full overflow-hidden">
-              <img src="/images/family.jpg" alt="भारतीय परिवार एवं बिटिया शिक्षा योजना" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
-              <div class="absolute top-3 left-3 bg-lic-yellow text-lic-blueDark font-black text-xs px-3 py-1 rounded-full shadow">
+            <div class="relative aspect-[16/10] sm:h-64 w-full overflow-hidden">
+              <img src="/images/family.jpg" alt="भारतीय परिवार एवं बिटिया शिक्षा योजना" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy" />
+              <div class="absolute top-2.5 left-2.5 bg-lic-yellow text-lic-blueDark font-black text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full shadow">
                 बिटिया उच्च शिक्षा व शादी
               </div>
             </div>
 
-            <div class="p-5 sm:p-6">
-              <span class="text-xs font-black text-amber-700 uppercase">Table 936 | सर्वाधिक पसंदीदा</span>
-              <h3 class="font-heading font-black text-xl text-lic-blue mt-1 mb-2">
+            <div class="p-4 sm:p-6">
+              <span class="text-[10px] sm:text-xs font-black text-amber-700 uppercase">Table 936 | सर्वाधिक पसंदीदा</span>
+              <h3 class="font-heading font-black text-lg sm:text-xl text-lic-blue mt-0.5 mb-1.5">
                 LIC जीवन लाभ (Jeevan Labh)
               </h3>
-              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3.5">
                 सीमित वर्षों तक बचत करें और बिटिया के कॉलेज जाने या विवाह के समय विशाल टैक्स-फ्री फंड प्राप्त करें। <strong>प्रीमियम वेवर बेनिफिट (PWB)</strong> के साथ परिवार हर हाल में सुरक्षित।
               </p>
 
-              <div class="grid grid-cols-2 gap-2 text-xs font-bold text-slate-700 mb-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold text-slate-700 mb-3">
                 <div class="flex items-center gap-1.5">
-                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
                   <span>कम प्रीमियम, अधिकतम बोनस</span>
                 </div>
                 <div class="flex items-center gap-1.5">
-                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
                   <span>100% सॉवरेन गारंटी</span>
                 </div>
                 <div class="flex items-center gap-1.5">
-                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
                   <span>लोन की आसान सुविधा</span>
                 </div>
                 <div class="flex items-center gap-1.5">
-                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
                   <span>Sec 80C & 10(10D) फ्री</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="p-5 sm:p-6 pt-0">
-            <a href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20LIC%20जीवन%20लाभ%20का%20चार्ट%20व%20कोटेशन%20भेजें।" target="_blank" onclick="soundEngine.playChime()" class="btn-tactile w-full py-3 rounded-xl bg-lic-blue hover:bg-lic-blueDark text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow">
+          <div class="p-4 sm:p-6 pt-0">
+            <a href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20LIC%20जीवन%20लाभ%20का%20चार्ट%20व%20कोटेशन%20भेजें।" target="_blank" onclick="soundEngine.playChime()" class="btn-tactile w-full py-3 rounded-xl bg-lic-blue hover:bg-lic-blueDark text-white font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow">
               <i data-lucide="file-text" class="w-4 h-4 text-lic-yellow"></i>
               <span>चिल्ड्रन्स प्लान कोटेशन प्राप्त करें →</span>
             </a>
@@ -579,45 +545,45 @@
         <!-- Featured Card 2: REAL RETIRED COUPLE PHOTO (Jeevan Umang) -->
         <div class="glass-lic-card overflow-hidden border-2 border-slate-200 hover:border-lic-blue transition-all shadow-lg flex flex-col justify-between">
           <div>
-            <div class="relative h-56 sm:h-64 w-full overflow-hidden">
-              <img src="/images/retirement.jpg" alt="रिटायर्ड दंपत्ति आजीवन पेंशन" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
-              <div class="absolute top-3 left-3 bg-emerald-600 text-white font-black text-xs px-3 py-1 rounded-full shadow">
+            <div class="relative aspect-[16/10] sm:h-64 w-full overflow-hidden">
+              <img src="/images/retirement.jpg" alt="रिटायर्ड दंपत्ति आजीवन पेंशन" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy" />
+              <div class="absolute top-2.5 left-2.5 bg-emerald-600 text-white font-black text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full shadow">
                 आजीवन 8% पक्की पेंशन
               </div>
             </div>
 
-            <div class="p-5 sm:p-6">
-              <span class="text-xs font-black text-emerald-700 uppercase">Table 945 | संपूर्ण रिटायरमेंट सुरक्षा</span>
-              <h3 class="font-heading font-black text-xl text-lic-blue mt-1 mb-2">
+            <div class="p-4 sm:p-6">
+              <span class="text-[10px] sm:text-xs font-black text-emerald-700 uppercase">Table 945 | संपूर्ण रिटायरमेंट सुरक्षा</span>
+              <h3 class="font-heading font-black text-lg sm:text-xl text-lic-blue mt-0.5 mb-1.5">
                 LIC जीवन उमंग (Jeevan Umang)
               </h3>
-              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3.5">
                 प्रीमियम अवधि समाप्त होते ही 100 वर्ष की आयु तक प्रति वर्ष <strong>8% गारंटीड लाइफटाइम टैक्स-फ्री पेंशन</strong>। आपके बाद बच्चों को पूरी मूल बीमा राशि सुरक्षित रूप से वापस।
               </p>
 
-              <div class="grid grid-cols-2 gap-2 text-xs font-bold text-slate-700 mb-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold text-slate-700 mb-3">
                 <div class="flex items-center gap-1.5">
-                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
                   <span>आजीवन 8% निश्चित पेंशन</span>
                 </div>
                 <div class="flex items-center gap-1.5">
-                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
                   <span>शेयर बाज़ार के उतार-चढ़ाव से मुक्त</span>
                 </div>
                 <div class="flex items-center gap-1.5">
-                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
                   <span>100 वर्ष तक जीवन सुरक्षा कवर</span>
                 </div>
                 <div class="flex items-center gap-1.5">
-                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
                   <span>100% टैक्स फ्री पेंशन आय</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="p-5 sm:p-6 pt-0">
-            <a href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20LIC%20जीवन%20उमंग%20(लाइफटाइम%208%25%20पेंशन)%20का%20चार्ट%20भेजें।" target="_blank" onclick="soundEngine.playChime()" class="btn-tactile w-full py-3 rounded-xl bg-lic-blue hover:bg-lic-blueDark text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow">
+          <div class="p-4 sm:p-6 pt-0">
+            <a href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20LIC%20जीवन%20उमंग%20(लाइफटाइम%208%25%20पेंशन)%20का%20चार्ट%20भेजें।" target="_blank" onclick="soundEngine.playChime()" class="btn-tactile w-full py-3 rounded-xl bg-lic-blue hover:bg-lic-blueDark text-white font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow">
               <i data-lucide="palm-tree" class="w-4 h-4 text-lic-yellow"></i>
               <span>पेंशन चार्ट व कोटेशन प्राप्त करें →</span>
             </a>
@@ -629,38 +595,38 @@
     </div>
   </section>
 
-  <!-- 7. INTERACTIVE PREMIUM & RETURN CALCULATOR (WITH AUDIO TICK & CASH DROP) -->
-  <section id="calculator" class="py-14 sm:py-20 bg-lic-blueSoft border-y border-blue-100">
+  <!-- 7. INTERACTIVE PREMIUM & RETURN CALCULATOR -->
+  <section id="calculator" class="py-10 sm:py-16 bg-lic-blueSoft border-y border-blue-100">
     <div class="fluid-container">
       
-      <div class="text-center max-w-2xl mx-auto mb-10">
-        <span class="px-3.5 py-1 rounded-full bg-lic-blue text-white text-xs font-bold uppercase">
+      <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+        <span class="px-3 py-0.5 rounded-full bg-lic-blue text-white text-[10px] sm:text-xs font-bold uppercase">
           LIC योजना कैलकुलेटर
         </span>
-        <h2 class="section-title font-black text-lic-blue mt-3 mb-2">
+        <h2 class="section-title font-black text-lic-blue mt-2 mb-1">
           अपनी बचत से जानें <span class="text-amber-600">गारंटीड मैच्योरिटी फंड</span>
         </h2>
-        <p class="text-xs sm:text-sm text-slate-600">
+        <p class="text-[11px] sm:text-xs text-slate-600">
           स्लाइडर्स को आगे-पीछे करके देखें कि आपको कितना रिटर्न और कितना लाइफ कवर मिलेगा:
         </p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
         
         <!-- Controls Column -->
-        <div class="lg:col-span-7 bg-white p-5 sm:p-7 rounded-2xl border border-slate-200 shadow-md flex flex-col justify-between">
-          <div class="space-y-6">
+        <div class="lg:col-span-7 bg-white p-4 sm:p-7 rounded-2xl border border-slate-200 shadow-md flex flex-col justify-between">
+          <div class="space-y-5 sm:space-y-6">
             
             <!-- Slider 1: Monthly Saving -->
             <div>
               <div class="flex items-center justify-between mb-2">
                 <label class="text-xs sm:text-sm font-bold text-slate-800">मासिक बचत (Monthly Savings):</label>
-                <span class="text-base sm:text-lg font-black font-heading text-lic-blue bg-lic-blueSoft px-3 py-1 rounded-lg border border-blue-200">
+                <span class="text-sm sm:text-lg font-black font-heading text-lic-blue bg-lic-blueSoft px-2.5 py-1 rounded-lg border border-blue-200">
                   ₹<span id="valMonthly">5,000</span>
                 </span>
               </div>
               <input type="range" id="sliderMonthly" min="1500" max="50000" step="500" value="5000" />
-              <div class="flex justify-between text-[11px] text-slate-400 font-bold mt-1">
+              <div class="flex justify-between text-[10px] sm:text-[11px] text-slate-400 font-bold mt-1">
                 <span>₹1,500/माह</span>
                 <span>₹25,000</span>
                 <span>₹50,000/माह</span>
@@ -671,12 +637,12 @@
             <div>
               <div class="flex items-center justify-between mb-2">
                 <label class="text-xs sm:text-sm font-bold text-slate-800">वर्तमान उम्र (Age):</label>
-                <span class="text-base sm:text-lg font-black font-heading text-lic-blue bg-lic-blueSoft px-3 py-1 rounded-lg border border-blue-200">
+                <span class="text-sm sm:text-lg font-black font-heading text-lic-blue bg-lic-blueSoft px-2.5 py-1 rounded-lg border border-blue-200">
                   <span id="valAge">30</span> वर्ष
                 </span>
               </div>
               <input type="range" id="sliderAge" min="18" max="55" step="1" value="30" />
-              <div class="flex justify-between text-[11px] text-slate-400 font-bold mt-1">
+              <div class="flex justify-between text-[10px] sm:text-[11px] text-slate-400 font-bold mt-1">
                 <span>18 वर्ष</span>
                 <span>35 वर्ष</span>
                 <span>55 वर्ष</span>
@@ -687,12 +653,12 @@
             <div>
               <div class="flex items-center justify-between mb-2">
                 <label class="text-xs sm:text-sm font-bold text-slate-800">पॉलिसी अवधि (Term Duration):</label>
-                <span class="text-base sm:text-lg font-black font-heading text-lic-blue bg-lic-blueSoft px-3 py-1 rounded-lg border border-blue-200">
+                <span class="text-sm sm:text-lg font-black font-heading text-lic-blue bg-lic-blueSoft px-2.5 py-1 rounded-lg border border-blue-200">
                   <span id="valTerm">21</span> वर्ष
                 </span>
               </div>
               <input type="range" id="sliderTerm" min="10" max="25" step="1" value="21" />
-              <div class="flex justify-between text-[11px] text-slate-400 font-bold mt-1">
+              <div class="flex justify-between text-[10px] sm:text-[11px] text-slate-400 font-bold mt-1">
                 <span>10 वर्ष</span>
                 <span>16 वर्ष</span>
                 <span>25 वर्ष</span>
@@ -701,26 +667,26 @@
 
           </div>
 
-          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-500 font-semibold">
-            <i data-lucide="info" class="w-4 h-4 text-lic-blue shrink-0"></i>
+          <div class="mt-5 pt-3.5 border-t border-slate-100 flex items-center gap-1.5 text-[10px] sm:text-xs text-slate-500 font-semibold">
+            <i data-lucide="info" class="w-3.5 h-3.5 text-lic-blue shrink-0"></i>
             <span>गणना LIC जीवन लाभ (Table 936) बोनस दर पर आधारित है।</span>
           </div>
         </div>
 
         <!-- Result Box (Official LIC Blue Card) -->
-        <div class="lg:col-span-5 rounded-2xl bg-lic-blue text-white p-5 sm:p-7 flex flex-col justify-between shadow-2xl border-4 border-lic-yellow relative overflow-hidden">
+        <div class="lg:col-span-5 rounded-2xl bg-lic-blue text-white p-4 sm:p-7 flex flex-col justify-between shadow-2xl border-2 sm:border-4 border-lic-yellow relative overflow-hidden">
           
-          <div class="absolute top-4 right-4 bg-lic-yellow text-lic-blueDark px-2.5 py-1 rounded-full text-[11px] font-black shadow">
+          <div class="absolute top-3 right-3 sm:top-4 sm:right-4 bg-lic-yellow text-lic-blueDark px-2 py-0.5 rounded-full text-[10px] font-black shadow">
             100% Tax-Free
           </div>
 
           <div>
-            <span class="text-xs uppercase tracking-wider font-bold text-blue-200">अनुमानित कुल मैच्योरिटी राशि (Maturity Fund)</span>
-            <div class="text-3xl sm:text-4xl font-black font-heading text-lic-yellow mt-1 mb-3">
+            <span class="text-[10px] sm:text-xs uppercase tracking-wider font-bold text-blue-200">अनुमानित कुल मैच्योरिटी राशि</span>
+            <div class="text-2xl sm:text-4xl font-black font-heading text-lic-yellow mt-1 mb-2.5 sm:mb-3">
               ₹<span id="resMaturity">21,50,000</span>
             </div>
             
-            <div class="space-y-2.5 pt-4 border-t border-white/20 text-xs sm:text-sm">
+            <div class="space-y-2 pt-3 border-t border-white/20 text-xs sm:text-sm">
               <div class="flex items-center justify-between">
                 <span class="text-blue-200">प्राकृतिक जीवन बीमा कवर:</span>
                 <span class="font-bold text-white" id="resLifeCover">₹10,00,000</span>
@@ -740,13 +706,13 @@
             </div>
           </div>
 
-          <!-- Dynamic Lead CTA connected to WhatsApp with Audio Chime & Confetti -->
-          <div class="mt-6">
-            <a id="btnCalcWhatsApp" href="#" target="_blank" class="btn-tactile w-full py-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xl shadow-emerald-950/40">
+          <!-- Dynamic Lead CTA connected to WhatsApp -->
+          <div class="mt-4 sm:mt-6">
+            <a id="btnCalcWhatsApp" href="#" target="_blank" class="btn-tactile w-full py-3 sm:py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow-xl shadow-emerald-950/40">
               <i data-lucide="send" class="w-4 h-4"></i>
               <span>इस प्लान का PDF कोटेशन WhatsApp पर लें</span>
             </a>
-            <p class="text-[10px] text-center text-blue-200 mt-2">
+            <p class="text-[9px] sm:text-[10px] text-center text-blue-200 mt-1.5">
               ⚡ 5 मिनट में ऑफिशियल LIC ब्रोशर आपके नंबर पर आ जाएगा।
             </p>
           </div>
@@ -758,57 +724,60 @@
     </div>
   </section>
 
-  <!-- 8. "BANK FD vs LIC" COMPARISON TABLE -->
-  <section class="py-12 sm:py-16 bg-white border-t border-slate-200">
+  <!-- 8. "BANK FD vs LIC" COMPARISON TABLE (WITH MOBILE HORIZONTAL SWIPE CUE) -->
+  <section class="py-10 sm:py-16 bg-white border-t border-slate-200">
     <div class="fluid-container">
-      <div class="max-w-3xl mx-auto glass-lic-card p-5 sm:p-8 border border-slate-300 shadow-md">
+      <div class="max-w-3xl mx-auto glass-lic-card p-4 sm:p-8 border border-slate-300 shadow-md">
         
-        <div class="text-center mb-6">
-          <span class="px-3 py-1 rounded-full bg-lic-yellow text-lic-blueDark text-[11px] font-black uppercase">
+        <div class="text-center mb-4 sm:mb-6">
+          <span class="px-2.5 py-0.5 rounded-full bg-lic-yellow text-lic-blueDark text-[10px] sm:text-[11px] font-black uppercase">
             वित्तीय तुलना
           </span>
-          <h3 class="text-lg sm:text-2xl font-black font-heading text-lic-blue mt-2">
+          <h3 class="text-base sm:text-2xl font-black font-heading text-lic-blue mt-1.5">
             बैंक FD बनाम LIC गारंटीड योजना
           </h3>
+          <p class="text-[10px] sm:text-xs text-slate-500 mt-1 md:hidden">
+            (👈 पूरी जानकारी देखने के लिए स्वाइप करें 👉)
+          </p>
         </div>
 
-        <div class="overflow-x-auto">
-          <table class="w-full text-xs sm:text-sm text-left">
+        <div class="overflow-x-auto -mx-2 px-2 pb-2">
+          <table class="w-full text-xs sm:text-sm text-left min-w-[420px]">
             <thead>
               <tr class="border-b-2 border-slate-300 text-slate-700">
-                <th class="pb-3 font-bold">सुविधा</th>
-                <th class="pb-3 font-bold text-red-600">बैंक फिक्स्ड डिपॉजिट (FD)</th>
-                <th class="pb-3 font-bold text-emerald-700">LIC जीवन लाभ योजना</th>
+                <th class="pb-2.5 font-bold">सुविधा</th>
+                <th class="pb-2.5 font-bold text-red-600">बैंक फिक्स्ड डिपॉजिट (FD)</th>
+                <th class="pb-2.5 font-bold text-emerald-700">LIC जीवन लाभ योजना</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-200 font-medium text-slate-800">
               <tr>
-                <td class="py-3 font-bold text-slate-600">इनकम टैक्स</td>
-                <td class="py-3 text-red-600 font-bold">ब्याज पर 10%-30% TDS कटता है</td>
-                <td class="py-3 text-emerald-700 font-bold">100% टैक्स फ्री (Sec 10(10D))</td>
+                <td class="py-2.5 font-bold text-slate-600">इनकम टैक्स</td>
+                <td class="py-2.5 text-red-600 font-bold">ब्याज पर 10%-30% TDS कटता है</td>
+                <td class="py-2.5 text-emerald-700 font-bold">100% टैक्स फ्री (Sec 10(10D))</td>
               </tr>
               <tr>
-                <td class="py-3 font-bold text-slate-600">जीवन सुरक्षा कवर</td>
-                <td class="py-3 text-slate-500">₹0 (कोई बीमा नहीं)</td>
-                <td class="py-3 text-emerald-700 font-bold">₹10 से ₹20 लाख का मुफ्त कवर</td>
+                <td class="py-2.5 font-bold text-slate-600">जीवन सुरक्षा कवर</td>
+                <td class="py-2.5 text-slate-500">₹0 (कोई बीमा नहीं)</td>
+                <td class="py-2.5 text-emerald-700 font-bold">₹10 से ₹20 लाख का मुफ्त कवर</td>
               </tr>
               <tr>
-                <td class="py-3 font-bold text-slate-600">अनहोनी पर परिवार की सुरक्षा</td>
-                <td class="py-3 text-slate-500">सिर्फ जमा मूलधन + ब्याज</td>
-                <td class="py-3 text-emerald-700 font-bold">पूरी बीमा राशि + आगे के प्रीमियम माफ़</td>
+                <td class="py-2.5 font-bold text-slate-600">अनहोनी पर परिवार की सुरक्षा</td>
+                <td class="py-2.5 text-slate-500">सिर्फ जमा मूलधन + ब्याज</td>
+                <td class="py-2.5 text-emerald-700 font-bold">पूरी बीमा राशि + आगे के प्रीमियम माफ़</td>
               </tr>
               <tr>
-                <td class="py-3 font-bold text-slate-600">सरकारी गारंटी</td>
-                <td class="py-3 text-slate-700">केवल ₹5 लाख तक (DICGC)</td>
-                <td class="py-3 text-emerald-700 font-bold">100% असीमित संप्रभु गारंटी (धारा 37)</td>
+                <td class="py-2.5 font-bold text-slate-600">सरकारी गारंटी</td>
+                <td class="py-2.5 text-slate-700">केवल ₹5 लाख तक (DICGC)</td>
+                <td class="py-2.5 text-emerald-700 font-bold">100% असीमित संप्रभु गारंटी (धारा 37)</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <div class="mt-5 text-center">
-          <a href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20FD%20और%20LIC%20की%20तुलना%20का%20चार्ट%20भेजें।" target="_blank" onclick="soundEngine.playChime()" class="btn-tactile inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-lic-blue hover:bg-lic-blueDark text-white font-extrabold text-xs sm:text-sm shadow-md">
-            <i data-lucide="message-circle" class="w-4 h-4 text-lic-yellow"></i>
+        <div class="mt-4 text-center">
+          <a href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20FD%20और%20LIC%20की%20तुलना%20का%20चार्ट%20भेजें।" target="_blank" onclick="soundEngine.playChime()" class="btn-tactile w-full sm:w-auto px-5 py-3 rounded-xl bg-lic-blue hover:bg-lic-blueDark text-white font-extrabold text-xs sm:text-sm shadow-md">
+            <i data-lucide="message-circle" class="w-4 h-4 text-lic-yellow mr-1.5"></i>
             <span>WhatsApp पर सम्पूर्ण कम्पेरिजन चार्ट मंगाएं</span>
           </a>
         </div>
@@ -818,23 +787,23 @@
   </section>
 
   <!-- 9. LEAD MAGNET: FREE LAPSED POLICY HEALTH CHECKUP -->
-  <section class="py-12 sm:py-16 bg-lic-blueSoft border-t border-blue-100">
+  <section class="py-10 sm:py-16 bg-lic-blueSoft border-t border-blue-100">
     <div class="fluid-container">
-      <div class="bg-white rounded-2xl p-6 sm:p-9 border-2 border-lic-blue shadow-lg">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+      <div class="bg-white rounded-2xl p-4 sm:p-9 border-2 border-lic-blue shadow-lg">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-center">
           
           <div class="lg:col-span-7">
-            <span class="px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-black uppercase">
+            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-black uppercase">
               100% फ्री डोरस्टेप / ऑनलाइन सहायता
             </span>
-            <h2 class="text-xl sm:text-2xl font-black font-heading text-lic-blue mt-2 mb-2">
+            <h2 class="text-lg sm:text-2xl font-black font-heading text-lic-blue mt-1.5 mb-1.5">
               क्या आपकी कोई पुरानी LIC पॉलिसी <span class="text-amber-600">बंद (Lapsed)</span> पड़ी है?
             </h2>
-            <p class="text-xs sm:text-sm text-slate-600 mb-4 leading-relaxed">
+            <p class="text-xs sm:text-sm text-slate-600 mb-3 leading-relaxed">
               पुरानी पॉलिसी की स्थिति, जमा बोनस, लोन एलिजिबिलिटी या नॉमिनी/बैंक अपडेट का स्टेटस घर बैठे फ्री में चेक करवाएं।
             </p>
-            <div class="flex items-center gap-3 text-xs text-slate-700 font-bold flex-wrap">
-              <span>✓ रिवाइवल छूट सहायता</span>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] text-slate-700 font-bold">
+              <span>✓ रिवाइवल छूट</span>
               <span>✓ नॉमिनी चेंज</span>
               <span>✓ लोन सुविधा</span>
               <span>✓ क्लेम असिस्टेंस</span>
@@ -842,14 +811,14 @@
           </div>
 
           <!-- Quick Form -->
-          <div class="lg:col-span-5 bg-lic-blue p-5 rounded-xl text-white border-2 border-lic-yellow shadow-md">
+          <div class="lg:col-span-5 bg-lic-blue p-4 sm:p-5 rounded-xl text-white border-2 border-lic-yellow shadow-md">
             <h4 class="font-heading font-black text-sm text-lic-yellow mb-1">फ्री पॉलिसी हेल्थ चेकअप:</h4>
-            <p class="text-[11px] text-blue-100 mb-3">नाम व मोबाइल नंबर लिखकर भेजें:</p>
+            <p class="text-[11px] text-blue-100 mb-2.5">नाम व मोबाइल नंबर लिखकर भेजें:</p>
             
-            <form onsubmit="handleHealthCheck(event)" class="space-y-2.5">
-              <input type="text" id="policyHolderName" placeholder="पॉलिसी धारक का नाम" required class="w-full px-3 py-2 rounded-lg bg-white text-slate-900 text-xs focus:outline-none" />
-              <input type="tel" id="policyMobile" placeholder="आपका मोबाइल नंबर" required class="w-full px-3 py-2 rounded-lg bg-white text-slate-900 text-xs focus:outline-none" />
-              <button type="submit" class="btn-tactile w-full py-2.5 rounded-lg bg-lic-yellow hover:bg-lic-yellowDark text-lic-blueDark font-black text-xs flex items-center justify-center gap-1.5 shadow">
+            <form onsubmit="handleHealthCheck(event)" class="space-y-2">
+              <input type="text" id="policyHolderName" placeholder="पॉलिसी धारक का नाम" required class="w-full px-3 py-2.5 rounded-lg bg-white text-slate-900 text-sm focus:outline-none" />
+              <input type="tel" id="policyMobile" placeholder="आपका मोबाइल नंबर" required class="w-full px-3 py-2.5 rounded-lg bg-white text-slate-900 text-sm focus:outline-none" />
+              <button type="submit" class="btn-tactile w-full py-2.5 rounded-lg bg-lic-yellow hover:bg-lic-yellowDark text-lic-blueDark font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow">
                 <i data-lucide="file-search" class="w-3.5 h-3.5"></i>
                 <span>स्टेटस चेक रिक्वेस्ट भेजें</span>
               </button>
@@ -862,15 +831,15 @@
   </section>
 
   <!-- 10. OFFICIAL FOOTER -->
-  <footer class="bg-lic-blueDark text-white pt-10 pb-24 sm:pb-12 text-xs border-t-4 border-lic-yellow">
+  <footer class="bg-lic-blueDark text-white pt-8 pb-24 sm:pb-12 text-xs border-t-4 border-lic-yellow">
     <div class="fluid-container text-center sm:text-left">
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 mb-6 sm:mb-8">
         <div>
           <span class="font-heading font-black text-base text-lic-yellow">राजेश शर्मा (MDRT USA)</span>
           <p class="text-blue-200 text-xs mt-1 leading-relaxed">
             भारतीय जीवन बीमा निगम (LIC Of India) के अधिकृत वरिष्ठ वित्तीय सलाहकार।
           </p>
-          <p class="text-[11px] text-slate-400 mt-2">शाखा कोड: 882 | एजेंसी कोड: 0487921X</p>
+          <p class="text-[11px] text-slate-400 mt-1.5">शाखा कोड: 882 | एजेंसी कोड: 0487921X</p>
         </div>
 
         <div>
@@ -888,46 +857,46 @@
         </div>
       </div>
 
-      <div class="pt-4 border-t border-white/10 text-center text-slate-400 text-[10px]">
+      <div class="pt-3.5 border-t border-white/10 text-center text-slate-400 text-[10px]">
         © 2026 राजेश शर्मा (MDRT Advisor - LIC Of India). All Rights Reserved. बीमा आग्रह की विषयवस्तु है।
       </div>
     </div>
   </footer>
 
-  <!-- 11. MOBILE APP BOTTOM DOCK -->
-  <div class="fixed bottom-0 left-0 right-0 z-50 sm:hidden bg-white/95 backdrop-blur-md border-t border-slate-200 py-1.5 px-3 flex items-center justify-around shadow-2xl">
-    <a href="#" onclick="soundEngine.playPop()" class="flex flex-col items-center text-lic-blue font-bold text-[10px]">
+  <!-- 11. MOBILE APP BOTTOM DOCK (IOS SAFE AREA COMPLIANT) -->
+  <div class="fixed bottom-0 left-0 right-0 z-50 sm:hidden bg-white/95 backdrop-blur-md border-t border-slate-200 mobile-bottom-dock px-3 flex items-center justify-around shadow-2xl">
+    <a href="#" onclick="soundEngine.playPop()" class="flex flex-col items-center text-lic-blue font-bold text-[10px] py-1">
       <i data-lucide="home" class="w-4 h-4"></i>
       <span>होम</span>
     </a>
 
-    <a href="#calculator" onclick="soundEngine.playPop()" class="flex flex-col items-center text-slate-600 font-bold text-[10px]">
+    <a href="#calculator" onclick="soundEngine.playPop()" class="flex flex-col items-center text-slate-600 font-bold text-[10px] py-1">
       <i data-lucide="calculator" class="w-4 h-4"></i>
       <span>कैलकुलेटर</span>
     </a>
 
     <!-- Center Floating WhatsApp with Chime -->
-    <a href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20LIC%20पॉलिसी%20का%20कोटेशन%20चाहिए।" target="_blank" onclick="soundEngine.playChime()" class="btn-tactile -mt-5 w-12 h-12 rounded-full bg-emerald-500 border-2 border-white text-white flex items-center justify-center shadow-lg shadow-emerald-700/40">
+    <a href="https://wa.me/919876543210?text=नमस्ते%20राजेश%20जी,%20मुझे%20LIC%20पॉलिसी%20का%20कोटेशन%20चाहिए।" target="_blank" onclick="soundEngine.playChime()" aria-label="WhatsApp कोटेशन लें" class="btn-tactile -mt-5 w-12 h-12 rounded-full bg-emerald-500 border-2 border-white text-white flex items-center justify-center shadow-lg shadow-emerald-700/40 shrink-0">
       <i data-lucide="message-circle" class="w-6 h-6 fill-white"></i>
     </a>
 
-    <a href="#quickQuiz" onclick="soundEngine.playPop()" class="flex flex-col items-center text-slate-600 font-bold text-[10px]">
+    <a href="#quickQuiz" onclick="soundEngine.playPop()" class="flex flex-col items-center text-slate-600 font-bold text-[10px] py-1">
       <i data-lucide="sparkles" class="w-4 h-4"></i>
       <span>क्विज</span>
     </a>
 
-    <a href="tel:+919876543210" onclick="soundEngine.playPop()" class="flex flex-col items-center text-slate-600 font-bold text-[10px]">
+    <a href="tel:+919876543210" onclick="soundEngine.playPop()" class="flex flex-col items-center text-slate-600 font-bold text-[10px] py-1">
       <i data-lucide="phone" class="w-4 h-4 text-amber-600"></i>
       <span>कॉल</span>
     </a>
   </div>
 
   <!-- 12. DYNAMIC SOCIAL PROOF FLOATING TOAST -->
-  <div id="liveToast" class="fixed bottom-16 sm:bottom-6 left-3 sm:left-6 z-40 max-w-[280px] sm:max-w-xs bg-white rounded-xl p-3 shadow-xl border border-slate-200 flex items-center gap-2.5 opacity-0 translate-y-4 pointer-events-none transition-all duration-300">
-    <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 font-bold text-xs">
+  <div id="liveToast" class="fixed bottom-20 sm:bottom-6 left-3 sm:left-6 z-40 max-w-[280px] sm:max-w-xs bg-white rounded-xl p-2.5 sm:p-3 shadow-xl border border-slate-200 flex items-center gap-2.5 opacity-0 translate-y-4 pointer-events-none transition-all duration-300">
+    <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 font-bold text-xs">
       ✓
     </div>
-    <div class="text-[11px] leading-tight">
+    <div class="text-[10px] sm:text-[11px] leading-tight">
       <strong id="toastUser" class="text-lic-blue font-black block">सुनीता जी (दिल्ली)</strong>
       <span id="toastAction" class="text-slate-600">ने अभी जीवन लाभ का कोटेशन मंगाया</span>
     </div>
@@ -937,9 +906,7 @@
   <script>
     lucide.createIcons();
 
-    // ==========================================
     // 1. LENIS SMOOTH LUXURY MOMENTUM SCROLL
-    // ==========================================
     let lenis;
     try {
       lenis = new Lenis({
@@ -947,20 +914,16 @@
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
         wheelMultiplier: 1.1,
-        touchMultiplier: 1.5,
+        touchMultiplier: 1.4,
       });
       function raf(time) {
         lenis.raf(time);
         requestAnimationFrame(raf);
       }
       requestAnimationFrame(raf);
-    } catch (e) {
-      console.log('Lenis scroll loaded in fallback mode');
-    }
+    } catch (e) {}
 
-    // ==========================================
     // 2. SYNTHETIC SOUND ENGINE (WEB AUDIO API)
-    // ==========================================
     class SyntheticSoundEngine {
       constructor() {
         this.ctx = null;
@@ -977,7 +940,6 @@
           this.ctx.resume();
         }
       }
-      // Tactile button click pop
       playPop() {
         if (!this.enabled) return;
         try {
@@ -996,7 +958,6 @@
           osc.stop(this.ctx.currentTime + 0.07);
         } catch (err) {}
       }
-      // Slider micro tick
       playTick() {
         if (!this.enabled) return;
         try {
@@ -1014,13 +975,12 @@
           osc.stop(this.ctx.currentTime + 0.025);
         } catch (err) {}
       }
-      // Celebratory Golden Cash Chime (Ka-Ching)
       playChime() {
         if (!this.enabled) return;
         try {
           this.init();
           if (!this.ctx) return;
-          const frequencies = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+          const frequencies = [523.25, 659.25, 783.99, 1046.50];
           frequencies.forEach((freq, idx) => {
             const osc = this.ctx.createOscillator();
             const gain = this.ctx.createGain();
@@ -1046,17 +1006,15 @@
       const soundBars = document.getElementById('soundBars');
       if (soundEngine.enabled) {
         soundEngine.playPop();
-        soundText.textContent = 'साउंड चालू';
-        soundBars.style.opacity = '1';
+        if (soundText) soundText.textContent = 'साउंड';
+        if (soundBars) soundBars.style.opacity = '1';
       } else {
-        soundText.textContent = 'साउंड बंद';
-        soundBars.style.opacity = '0.3';
+        if (soundText) soundText.textContent = 'म्यूट';
+        if (soundBars) soundBars.style.opacity = '0.3';
       }
     }
 
-    // ==========================================
     // 3. INTERACTIVE CALCULATOR LOGIC
-    // ==========================================
     const sliderMonthly = document.getElementById('sliderMonthly');
     const sliderAge = document.getElementById('sliderAge');
     const sliderTerm = document.getElementById('sliderTerm');
@@ -1126,13 +1084,11 @@
     btnCalcWhatsApp.addEventListener('click', () => {
       soundEngine.playChime();
       if (window.confetti) {
-        confetti({ particleCount: 80, spread: 75, origin: { y: 0.7 } });
+        confetti({ particleCount: 75, spread: 70, origin: { y: 0.7 } });
       }
     });
 
-    // ==========================================
     // 4. 20-SECOND SMART QUIZ LOGIC
-    // ==========================================
     const quizData = {
       child: {
         title: 'LIC जीवन लाभ (Table 936)',
@@ -1185,9 +1141,7 @@
       window.open(`https://wa.me/919876543210?text=${msg}`, '_blank');
     }
 
-    // ==========================================
-    // 5. ANIMATED NUMERICAL COUNTERS
-    // ==========================================
+    // 5. ANIMATED OD力のMETERS
     let countersAnimated = false;
     function animateOdometers() {
       const odometers = document.querySelectorAll('.odometer');
@@ -1212,19 +1166,17 @@
     }
 
     window.addEventListener('scroll', () => {
-      if (!countersAnimated && window.scrollY > 80) {
+      if (!countersAnimated && window.scrollY > 60) {
         countersAnimated = true;
         animateOdometers();
       }
     });
-    if (window.scrollY > 80 && !countersAnimated) {
+    if (window.scrollY > 60 && !countersAnimated) {
       countersAnimated = true;
       animateOdometers();
     }
 
-    // ==========================================
     // 6. DYNAMIC SOCIAL PROOF TOAST
-    // ==========================================
     const toastData = [
       { user: 'सुनीता जी (दिल्ली)', action: 'ने अभी जीवन लाभ का कोटेशन मंगाया' },
       { user: 'राहुल शर्मा (जयपुर)', action: 'ने अपनी बंद LIC पॉलिसी रिवाइव कराई' },
